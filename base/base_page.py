@@ -11,7 +11,9 @@ class BasePage:
         return self.wait.until(EC.presence_of_element_located(locator))
 
     def click(self, locator):
-        self.find_element(locator).click()
+        # 改为等待元素可点击，比等待存在更稳健
+        from selenium.webdriver.support import expected_conditions as EC
+        self.wait.until(EC.element_to_be_clickable(locator)).click()
 
     def input_text(self, locator, text):
         element = self.find_element(locator)

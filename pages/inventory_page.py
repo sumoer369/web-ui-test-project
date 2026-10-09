@@ -10,6 +10,9 @@ class InventoryPage(BasePage):
     def add_first_item_to_cart(self):
         """将第一个商品加入购物车"""
         self.click(self.FIRST_ITEM_ADD_BUTTON)
+        # 新增：点击后，等待购物车徽章在页面上渲染出来（最多等10秒）
+        from selenium.webdriver.support import expected_conditions as EC
+        self.wait.until(EC.presence_of_element_located(self.SHOPPING_CART_BADGE))
 
     def get_cart_count(self):
         """获取购物车图标上的商品数量"""

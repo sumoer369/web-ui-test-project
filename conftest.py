@@ -10,7 +10,7 @@ def driver():
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
 
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(service=Service(), options=chrome_options)
     driver.maximize_window()
     driver.get("https://www.saucedemo.com/")
 

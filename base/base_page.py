@@ -4,7 +4,8 @@ from selenium.webdriver.support import expected_conditions as EC
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver, 10)
+        # 将超时时间从10秒增加到30秒，适应云端服务器的慢速渲染
+        self.wait = WebDriverWait(driver, 30)
 
     def find_element(self, locator):
         # 显式等待，直到元素可见
@@ -12,7 +13,6 @@ class BasePage:
 
     def click(self, locator):
         # 改为等待元素可点击，比等待存在更稳健
-        from selenium.webdriver.support import expected_conditions as EC
         self.wait.until(EC.element_to_be_clickable(locator)).click()
 
     def input_text(self, locator, text):
